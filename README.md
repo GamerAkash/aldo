@@ -1,5 +1,6 @@
 # aldo
 **A**ds? **L**et's **D**ecline, **O**bviously
+
 Set of scripts that automates the daily ad watching in a certain gacha game. Someday, perhaps also automate grinding.
 
 ## Requirements
