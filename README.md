@@ -1,12 +1,13 @@
 # aldo
 **A**ds? **L**et's **D**ecline, **O**bviously
+Set of scripts that automates the daily ad watching in a certain gacha game. Someday, perhaps also automate grinding.
 
 ## Requirements
 * Jailbroken iOS device with resolution 1536 x 2048: iPad generations 3-6.
 * The [Autotouch](https://docs.autotouch.net/) app. Demo will timeout after 1 minute so you need to purchase a license.
     * Be able to figure out how to copy the scripts to your device. I use [WinSCP](https://winscp.net/eng/index.php) and enable WebDAV on Autotouch.
 * You need to be able to program Javascript. You need to read much of the code to understand what it's doing so you can modify it for your own needs. Much of it won't work out of the box - you need to tell it which abilities to use on which units.
-* You need to be ok with getting banned and/or the script running amok. It has some safety checks but theoretically if the right sequence of taps happens, it can do horrible things like: sell your units, buy money bundles, use your tickets, etc. I treat it like I would a self-driving car. It's a convenience feature but I take full responsibility if I take my hands off the wheel and it gets me into trouble.
+* You need to be ok with getting banned and/or the script running amok. It has some safety checks but theoretically if the right sequence of taps happens, it can do horrible things like: gamble your stones on a horrible banner, eat those sandwiches from Feinne you've been saving for a year, etc. I treat it like I would a self-driving car. It's a convenience feature but I take full responsibility if I take my hands off the wheel and it gets me into trouble.
 
 ## Disclaimers
 * <span style="color:red">**You may get banned for using this.**</span>
@@ -20,11 +21,12 @@
 * I do this for myself and don't have time to do tech support. I want to help humanity by letting other players enjoy the game without the mind-numbing tedium, but my altruism only goes so far.
 
 ## Ad watching
+* Watches as many of the 5 daily ads as are available, then watch the ad in the "Buy Chronos" screen
 * Uses the X detection algorithm I implemented for my other game's bot (FFBE) and published in the [bot-common](https://github.com/ratbirdmonger/bot-common) repo.
-* Because the state of ads on AE is very new, there will be cases in the future that aren't handled properly. I will fix them as they happen.
+* Because the state of ads on AE is very new, there will be cases in the future that aren't handled properly. I will fix them as they happen on my device.
 
 ## To do
-* Currently watches one Ad and closes it, I will be improving this to handle all ads, including the login ad and the "tap" ad.
+* Watch the login ad and continue on to watch the rest of the ads
 * Another Dungeon farming
 * Currency farming for episodes
 
