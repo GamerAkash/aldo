@@ -39,8 +39,7 @@ const BUY_STONES_EXIT_REGION = {x: 1901, y: 235, width: 79, height: 56};
 sleep(0.5);
 
 function watchAndCloseAd() {
-    // sleep(55);
-    sleep(1);
+    sleep(55);
 
     if(readText(AD_APP_STORE_DONE_REGION) == "Done") {
         // it was an app store ad, click on the Done button
