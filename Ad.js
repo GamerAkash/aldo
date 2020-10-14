@@ -28,6 +28,10 @@ const AD_CONFIRM_REWARD_OK_BUTTON = {x: 823, y: 973, width: 402, height: 133};
 // "Could not receive" because we have too many keys, or "Completed today's treasure"
 const AD_REWARD_FINISHED_OK_BUTTON = {x: 984, y: 844, width: 85, height: 56};
 const AD_FAILED_TO_PROCESS_CAPTION_REGION = {x: 829, y: 676, width: 389, height: 60};
+// click the OK button for the daily ad
+const AD_DAILY_REWARD_FINISHED_OK_BUTTON = {x: 976, y: 897, width: 103, height: 58};
+// the dialog that pops up on login asking to watch an ad
+const AD_DAILY_WATCH_VIDEO_BUTTON = {x: 1158, y: 953, width: 270, height: 64};
 
 const BUY_STONES_BUTTON_REGION = {x: 1400, y: 234, width: 39, height: 38};
 // rectangle around the words "Earn 10"
@@ -38,8 +42,8 @@ const BUY_STONES_EXIT_REGION = {x: 1901, y: 235, width: 79, height: 56};
 
 sleep(0.5);
 
-function watchAndCloseAd() {
-    sleep(55);
+function watchAndCloseAd(waitTime = 55) {
+    poll(function(){return readText(AD_APP_STORE_DONE_REGION) == "Done";}, waitTime, 1);
 
     if(readText(AD_APP_STORE_DONE_REGION) == "Done") {
         // it was an app store ad, click on the Done button
@@ -57,8 +61,26 @@ function watchAndCloseAd() {
             tap(regions[result.n].x + result.x, regions[result.n].y + result.y);
         }
     }
-    sleep(3);
+    sleep(5);
 }
+
+// if we started at the daily ad screen then watch it
+// if(readText(AD_DAILY_WATCH_VIDEO_BUTTON, 0.5, 0) == "Watch Video") {
+//     tapMiddle(AD_DAILY_WATCH_VIDEO_BUTTON);
+//     if(readText(AD_FAILED_TO_PROCESS_CAPTION_REGION) == "Failed to process") {
+//         alert("Failed to process")
+//         at.stop(); // see what happens here, then we can handle it
+//     }    
+//     watchAndCloseAd();
+//     if(readText(AD_FAILED_TO_PROCESS_CAPTION_REGION) == "Failed to process") {
+//         alert("Failed to process")
+//         at.stop(); // see what happens here, then we can handle it
+//     }        
+//     if(readText(AD_DAILY_REWARD_FINISHED_OK_BUTTON, 0.5, 0) == "OK") {
+//         tapMiddle(AD_DAILY_REWARD_FINISHED_OK_BUTTON);
+//         sleep(1);
+//     }
+// }
 
 // watch the 5 daily ads
 while(true) {
@@ -76,15 +98,17 @@ while(true) {
     tapMiddle(AD_WATCH_VIDEO_REGION);
     sleep(2);
     if(readText(AD_FAILED_TO_PROCESS_CAPTION_REGION) == "Failed to process") {
-        // start the loop again
-        continue;
+        tapMiddle(AD_FAILED_TO_PROCESS_CAPTION_REGION);
+        sleep(1);
+        continue; // start the loop again
     }    
 
     watchAndCloseAd();
 
     if(readText(AD_FAILED_TO_PROCESS_CAPTION_REGION) == "Failed to process") {
-        // start the loop again
-        continue;
+        tapMiddle(AD_FAILED_TO_PROCESS_CAPTION_REGION);
+        sleep(1);
+        continue; // start the loop again
     }
     tapMiddle(AD_CHEST_BUTTON);
     sleep(1);
